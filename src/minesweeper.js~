@@ -1,0 +1,14 @@
+const printboard = (board) => {
+	console.log(board[0].join('|'));
+	console.log(board[1].join('|'));
+	console.log(board[2].join('|'));	
+}
+const board = [
+	[' ',' ',' '],
+	[' ',' ',' '],
+	[' ',' ',' ']
+];
+printboard(board);
+board[0][0] = '1';
+board[2][2] = 'B';
+printboard(board);
