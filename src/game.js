@@ -1,23 +1,32 @@
 'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _board = require('./board');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Game = exports.Game = function () {
+// To play Minesweeper, we will create instances of MineSweeperGame in command line.
+// For example:
+// In the command line, navigate to the lib directory and run `node`
+// Run `.load game.js` to load the contents of this file.
+// Then create a Game instance and run commands like so:
+// let game = new Game(3, 3, 3);
+// game.playMove(0, 1);
+// game.playMove(1, 2);
+// When done run `.exit`
+
+var Game = function () {
 	function Game(numberOfRows, numberOfColumns, numberOfBombs) {
 		_classCallCheck(this, Game);
 
-		this._board = new Board(numberOfRows, numberOfColumns, numberOfBombs);
+		this._board = new _board.Board(numberOfRows, numberOfColumns, numberOfBombs);
 	}
 
 	_createClass(Game, [{
 		key: 'playMove',
 		value: function playMove(rowIndex, columnIndex) {
+			console.log("inside playMove");
 			this._board.flipTile(rowIndex, columnIndex);
 			if (this._board.bombBoard[rowIndex][columnIndex] === 'B') {
 				console.log('GAME OVER');
@@ -38,20 +47,3 @@ var Game = exports.Game = function () {
 
 	return Game;
 }();
-
-var g = new Game(3, 3, 3);
-
-g.playMove(0, 0);
-g.playMove(1, 1);
-g.playMove(2, 2);
-//console.log(g.board.print(g.board.bombBoard));
-/*const board = [
-	[' ',' ',' '],
-	[' ',' ',' '],
-	[' ',' ',' ']
-];
-printboard(board);
-board[0][1] = '1';
-board[2][2] = 'B';
-printboard(board);
-*/
